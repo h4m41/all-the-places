@@ -7,8 +7,6 @@
   background: rgb(240, 240, 240);
   padding: 1rem;
   border-radius: 0.5rem;
-
-  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
 }
 
 .content {
@@ -55,6 +53,35 @@ section {
 span {
   margin-right: 0.5rem;
 }
+.un-content {
+  align-self: self-start;
+  margin-left: auto;
+  position: relative;
+}
+.tooltip {
+  position: absolute;
+  background-color: gray;
+  color: white;
+  padding: 0.3rem;
+  border-radius: 0.2rem;
+  bottom: -2rem;
+  left: -1.4rem;
+  opacity: 0;
+  font-size: 0.7rem;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+  pointer-events: none;
+}
+.un-content:hover .tooltip {
+  opacity: 1;
+}
+.un-content img {
+  width: 2rem;
+}
+.un-content:hover {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 500px) {
   section {
     grid-template-columns: 1fr;

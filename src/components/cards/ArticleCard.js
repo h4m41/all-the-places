@@ -2,7 +2,8 @@ import React from "react";
 import "./ArticleCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLanguage, faUserGroup } from "@fortawesome/free-solid-svg-icons";
-const ArticleCard = ({ name, lang, flag, continent, population }) => {
+import UnLogo from "../../assets/images/un.png";
+const ArticleCard = ({ name, lang, flag, continent, population, un }) => {
   //Object.keys(lang).map((key,i) =>lang[key])
   return (
     <article className="card">
@@ -27,6 +28,12 @@ const ArticleCard = ({ name, lang, flag, continent, population }) => {
             {lang && Object.keys(lang).map((key) => lang[key] + " ")}
           </p>
         </div>
+        {un && (
+          <div className="un-content">
+            <img src={UnLogo} alt="Un-Logo" className="un-logo" />
+            <div className="tooltip"> UN Member</div>
+          </div>
+        )}
       </div>
     </article>
   );

@@ -1,11 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import ArticleCard from "../components/cards/ArticleCard";
+import "./Articles.css";
 
 const Articles = () => {
   const [showData, setShowData] = useState([]);
-  const [query, setQuery] = useState("");
-  console.log(query);
+  const [input, setInput] = useState("");
+  console.log(input);
 
   async function showInfo() {
     const response = await fetch("https://restcountries.com/v3.1/all");
@@ -14,18 +15,22 @@ const Articles = () => {
   }
 
   const showCountry = showData
-    .filter((country) => country.name.common.includes(query))
+    .filter((country) => country.name.common.toLowerCase().includes(input))
     .map((country) => {
       return (
         <>
-          <ArticleCard
-            name={country.name.common}
-            flag={country.flags.svg}
-            continent={country.continents}
-            population={country.population}
-            lang={country.languages}
-            key={country.name.official}
-          />
+          {" "}
+          {ArticleCard && (
+            <ArticleCard
+              name={country.name.common}
+              flag={country.flags.svg}
+              continent={country.continents}
+              population={country.population}
+              lang={country.languages}
+              un={country.unMember}
+              key={country.name.official}
+            />
+          )}
         </>
       );
     });
@@ -42,8 +47,8 @@ const Articles = () => {
         <input
           className="search-bar"
           type="text"
-          onKeyDown={(e) => setQuery(e.target.value)}
-          placeholder="Search country"
+          onChange={(letter) => setInput(letter.target.value)}
+          placeholder="Search Country"
         />
       </nav>
       <section>{showCountry}</section>
@@ -51,25 +56,3 @@ const Articles = () => {
   );
 };
 export default Articles;
-
-//   const showCountry = showData.map((country) => {
-//     return (
-//       <>
-//         <ArticleCard
-//           name={country.name.common}
-//           flag={country.flags.svg}
-//           continent={country.continents}
-//           population={country.population}
-//           key={country.name.common}
-//           lang={country.languages}
-//         />
-//       </>
-//     );
-//   });
-
-//   useEffect(() => {
-//     showInfo();
-//   }, []);
-//   return <section>{showCountry}</section>;
-// };
-// export default Articles;
